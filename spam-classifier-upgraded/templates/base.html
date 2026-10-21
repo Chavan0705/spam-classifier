@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} · SpamGuard</title>
+  <script>document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><i data-lucide="shield-check"></i><span>SpamGuard</span></div>
+    <nav>
+      {% set nav = [('dashboard','Dashboard','layout-dashboard','/'),('predict','Detect spam','scan-search','/predict'),('evaluation','Model evaluation','chart-column','/evaluation')] %}
+      {% for id, label, icon, href in nav %}
+      <a href="{{ href }}" class="{{ 'active' if page == id }}"><i data-lucide="{{ icon }}"></i>{{ label }}</a>
+      {% endfor %}
+    </nav>
+    <p class="side-note">Naive Bayes vs LSTM on the SMS Spam Collection</p>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <button id="menu" class="icon-btn" aria-label="Open menu"><i data-lucide="menu"></i></button>
+      <h1>{{ title }}</h1>
+      <button id="theme" class="icon-btn" aria-label="Toggle light or dark theme"><i data-lucide="sun-moon"></i></button>
+    </header>
+    <main>{% block content %}{% endblock %}</main>
+  </div>
+  <div id="toasts" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

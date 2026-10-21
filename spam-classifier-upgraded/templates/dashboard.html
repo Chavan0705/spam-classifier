@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="kpis" id="kpis"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></section>
+<section class="grid">
+  <article class="card"><h2>Spam vs legitimate</h2><p class="hint">Whole dataset</p><div class="chart-box"><canvas id="c-split"></canvas><p class="empty" hidden></p></div></article>
+  <article class="card"><h2>Test-set outcomes</h2><p class="hint" id="outcome-hint"></p><div class="chart-box"><canvas id="c-outcomes"></canvas><p class="empty" hidden></p></div></article>
+  <article class="card wide"><h2>Predictions over time</h2><p class="hint">Spam probability of each message analyzed in this app</p><div class="chart-box"><canvas id="c-history"></canvas><p class="empty" hidden></p></div></article>
+  <article class="card"><h2>Confusion matrix</h2><p class="hint" id="cm-hint"></p><div id="cm"></div></article>
+  <article class="card"><h2>Model comparison</h2><p class="hint">Test set</p><div class="chart-box"><canvas id="c-models"></canvas><p class="empty" hidden></p></div></article>
+  <article class="card"><h2>Probability distribution</h2><p class="hint">Test messages by predicted spam probability. Model scores, not verified calibrated confidence.</p><div class="chart-box"><canvas id="c-probs"></canvas><p class="empty" hidden></p></div></article>
+  <article class="card"><h2>Top spam words</h2><p class="hint">Naive Bayes log-ratio vs ham</p><div class="chart-box"><canvas id="c-words"></canvas><p class="empty" hidden></p></div></article>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>{% endblock %}

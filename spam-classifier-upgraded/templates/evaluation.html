@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card"><h2>Dataset and split</h2><p id="dataset" class="hint">Loading…</p></section>
+<section class="grid two" id="models"></section>
+<section class="grid two">
+  <article class="card"><h2>Metrics by model</h2><div class="chart-box"><canvas id="c-cmp"></canvas><p class="empty" hidden></p></div></article>
+  <article class="card"><h2>F1 vs training data</h2><p class="hint">Same test set, trained on a fraction of the data</p><div class="chart-box"><canvas id="c-curve"></canvas><p class="empty" hidden></p></div></article>
+  <article class="card"><h2>LSTM loss</h2><div class="chart-box"><canvas id="c-loss"></canvas><p class="empty" hidden></p></div></article>
+  <article class="card"><h2>LSTM accuracy</h2><div class="chart-box"><canvas id="c-acc"></canvas><p class="empty" hidden></p></div></article>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/evaluation.js') }}"></script>{% endblock %}

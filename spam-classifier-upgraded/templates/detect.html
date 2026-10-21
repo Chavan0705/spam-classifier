@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="grid two">
+  <article class="card">
+    <h2>Analyze a message</h2>
+    <label for="msg" class="sr">Message</label>
+    <textarea id="msg" rows="7" maxlength="1000" placeholder="Paste an SMS or email here"></textarea>
+    <div class="row between"><span class="hint" id="count">0 / 1000</span>
+      <div class="row">
+        <button class="btn ghost" id="example"><i data-lucide="sparkles"></i>Example</button>
+        <button class="btn ghost" id="clear"><i data-lucide="eraser"></i>Clear</button>
+        <button class="btn" id="analyze"><i data-lucide="scan-search"></i><span>Analyze Message</span></button>
+      </div>
+    </div>
+  </article>
+  <article class="card" id="result-card">
+    <h2>Result</h2>
+    <p class="empty" id="result-empty">Analyze a message to see the classification.</p>
+    <div id="result" hidden>
+      <div class="row between"><strong id="label" class="label"></strong>
+        <button class="btn ghost" id="copy"><i data-lucide="copy"></i>Copy</button></div>
+      <p class="hint" id="by"></p>
+      <div id="bars"></div>
+      <p class="hint">Probabilities are raw model scores and have not been checked for calibration.</p>
+      <h3>Words with the most influence (Naive Bayes)</h3><p id="drivers" class="chips"></p>
+    </div>
+  </article>
+  <article class="card wide"><h2>Recent predictions</h2><div id="recent"><p class="empty">No predictions yet.</p></div></article>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/predict.js') }}"></script>{% endblock %}
